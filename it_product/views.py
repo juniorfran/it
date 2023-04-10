@@ -3,9 +3,16 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
 from .models import Productos
+from it_proveedor.models import Suc_Empresa
 
 
 # Create your views here.
+
+def inst_suc_empresas(request):
+    """
+    """
+    suc_empresas = Suc_Empresa.objects.all()
+    return render(request, 'product/product_create.html', {'suc_empresas': suc_empresas})
 
 @login_required
 def product_list(request):
@@ -17,11 +24,17 @@ def product_list(request):
 
 
 @login_required
+def product_view(request):
+
+    suc_empresas = Suc_Empresa.objects.all()
+    return render(request, 'product/product_create.html', {'suc_empresas': suc_empresas})    
+
+@login_required
 def product_create(request):
     """
     Crea un producto
     """
-    suc_empresas = Productos.objects.all()
+    # suc_empresas = Productos.objects.all()
 
     if request.method == 'POST':
         nombre = request.POST['nombre']
@@ -37,19 +50,8 @@ def product_create(request):
         producto.save()
         return redirect('product_list')
     else:
-        
+        suc_empresas = Suc_Empresa.objects.all()
         return render(request, 'product/product_create.html', {'suc_empresas':suc_empresas})
-
-def suc_empresa_submission(request):
-    """
-    Subida de un producto
-    """
-    suc_empresa_pk = request.POST.get('suc_empresa')
-    suc_empresa = Productos.objects.get(pk=suc_empresa_pk)
-    suc_emp = Productos(suc_empresa=suc_empresa)
-    suc_emp.save()
-    return redirect('product_list')
-
 
 @login_required
 def product_edit(request, pk):
@@ -57,6 +59,7 @@ def product_edit(request, pk):
     Edita un producto
     """
     producto = get_object_or_404(Productos, pk=pk)
+    print (request.method)
     if request.method == 'POST':
         producto.nombre = request.POST['nombre']
         producto.precio = request.POST['precio']

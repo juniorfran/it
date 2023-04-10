@@ -8,7 +8,7 @@
 
         <h2 class="fw-bold mb-2 text-uppercase">IT SAURUS</h2>
         <p class="text-white-50 mb-5">Crear un nuevo producto!</p>
-        <form method="post">
+        <form method="POST">
             {% csrf_token %}
             <div class="mb-2">
               <label for="nombre" class="col-form-label">Nombre:<input type="text" class="form-control" name="nombre" id="nombre"></label>
@@ -17,13 +17,14 @@
               <label for="serie" class="col-form-label">Serie: <input type="text" class="form-control" name="serie" id="serie"></label>
               <label for="ubicacion" class="col-form-label">Ubicacion:<input type="text" class="form-control" name="ubicacion" id="ubicacion"></label>
               <label for="ciudad">Proveedor:</label>
-              <select name="suc_empresas">
-                  {% for suc in suc_empresas %}
-                      <option value="{{ suc.pk }}">{{ suc.nombre }}</option>
-                  {% endfor %}
-              </select>
             </div>
 
+              {% csrf_token %}
+              <select name="suc_empresas">
+                {% for suc in suc_empresas %}
+                    <option value="{{ suc.pk }}">{{ suc.nombre }}</option>
+                {% endfor %}
+            </select>
 
             <div class="mb-2">
               <label for="descripcion" class="col-form-label">Descripcion:</label><textarea class="form-control" name="descripcion" id="descripcion"></textarea>
@@ -36,6 +37,8 @@
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </div>
         </form>
+
+        
         
     </div>
   </div>

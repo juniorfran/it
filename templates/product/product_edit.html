@@ -8,7 +8,7 @@
 
         <h2 class="fw-bold mb-2 text-uppercase">IT SAURUS</h2>
         <p class="text-white-50 mb-5">Please enter your login and password!</p>
-        <form method="post">
+        <form method="POST">
             {% csrf_token %}
             <div class="mb-2">
               <label for="nombre" class="col-form-label">Nombre:<input type="text" class="form-control" value="{{producto.nombre}}" name="nombre" id="nombre"></label>
