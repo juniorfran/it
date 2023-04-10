@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card text-black" style="border-radius: 1rem;">
+    <div class="card-body p-2 text-center">
+      <div class="pb-2">
+
+        <h2 class="fw-bold mb-2 text-uppercase">IT SAURUS</h2>
+        <p class="text-white-50 mb-5">Please enter your login and password!</p>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-2">
+              <label for="nombre" class="col-form-label">Nombre:<input type="text" class="form-control" value="{{producto.nombre}}" name="nombre" id="nombre"></label>
+              <label for="precio" class="col-form-label">Precio:<input type="text" class="form-control" value="{{producto.precio}}" name="precio" id="precio"></label>
+              <label for="stock" class="col-form-label">Stock:<input type="text" class="form-control" value="{{producto.stock}}" name="stock" id="stock"></label>
+              <label for="serie" class="col-form-label">Serie: <input type="text" class="form-control" disable value="{{producto.serie}}" name="serie" id="serie"></label>
+              <label for="ubicacion" class="col-form-label">Ubicacion:<input type="text" class="form-control" value="{{producto.ubicacion}}" name="ubicacion" id="ubicacion"></label>
+            </div>
+            <div class="mb-2">
+              <label for="descripcion" class="col-form-label">Descripcion:</label><textarea class="form-control" value="{{producto.descripcion}}" name="descripcion" id="descripcion"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </form>
+        
+    </div>
+  </div>
+</div>
+
+{% endblock %}

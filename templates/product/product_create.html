@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card text-black" style="border-radius: 1rem;">
+    <div class="card-body p-2 text-center">
+      <div class="pb-2">
+
+        <h2 class="fw-bold mb-2 text-uppercase">IT SAURUS</h2>
+        <p class="text-white-50 mb-5">Crear un nuevo producto!</p>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-2">
+              <label for="nombre" class="col-form-label">Nombre:<input type="text" class="form-control" name="nombre" id="nombre"></label>
+              <label for="precio" class="col-form-label">Precio:<input type="text" class="form-control" name="precio" id="precio"></label>
+              <label for="stock" class="col-form-label">Stock:<input type="text" class="form-control" name="stock" id="stock"></label>
+              <label for="serie" class="col-form-label">Serie: <input type="text" class="form-control" name="serie" id="serie"></label>
+              <label for="ubicacion" class="col-form-label">Ubicacion:<input type="text" class="form-control" name="ubicacion" id="ubicacion"></label>
+              <label for="ciudad">Proveedor:</label>
+              <select name="suc_empresas">
+                  {% for suc in suc_empresas %}
+                      <option value="{{ suc.pk }}">{{ suc.nombre }}</option>
+                  {% endfor %}
+              </select>
+            </div>
+
+
+            <div class="mb-2">
+              <label for="descripcion" class="col-form-label">Descripcion:</label><textarea class="form-control" name="descripcion" id="descripcion"></textarea>
+            </div>
+            <div class="input-group mb-3">
+              <label class="input-group-text" for="inputGroupFile01">Imagen</label>
+              <input name="imagen" id="imagen" type="file" class="form-control">
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </form>
+        
+    </div>
+  </div>
+</div>
+
+{% endblock %}

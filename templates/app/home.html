@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{{ title }}</h1>
+
+<div class="card text-black" style="border-radius: 2rem;">
+    
+    <div class="card-body p-5 text-center">
+        <h2 class="fw-bold mb-2 text-uppercase">IT SAURUS</h2>
+    <p class="text-black-50 mb-5">Please enter your login and password!</p>
+      <div class="pb-2">
+      <form method="post" class="py-2 h-50 ">
+        {% csrf_token %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Serie</th>
+                    <th>Descripcion</th>
+                    <th>Ubicacion</th>
+                    <th>Proveedor</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in productos %}
+
+                <tr>
+                    <td scope="row">{{producto.nombre}}</td>
+                    <td>{{ producto.precio }}</td>
+                    <td scope="row">{{producto.stock}}</td>
+                    <td>{{ producto.serie }}</td>
+                    <td>{{ producto.descripcion }}</td>
+                    <td>{{ producto.ubicacion }}</td>
+                    <td>{{ producto.suc_empresa }}</td>
+                    <td><a href="{% url 'product_edit'  producto.pk %}">Editar</a></td>
+                    <td><a href="{% url 'product_delete' producto.pk %}">Eliminar</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
