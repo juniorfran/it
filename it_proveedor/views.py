@@ -1,6 +1,9 @@
 from django.shortcuts import redirect, render
 from .models import Empresas, Suc_Empresa, Representante
 
+
+##VISTAS PARA EMPRESAS
+
 def emmpresa_create(request):
     if request.method == 'POST':
         nombre = request.POST['nombre']
@@ -53,17 +56,28 @@ def empresa_delete(request):
         return redirect('empresas:empresas')
     else:
         return render(request, 'empresas/empresas.html')
-    
 
-def empresa_shear(request):
+
+
+## VISTAS PARA SUC_EMPRESAS
+
+def suc_empresas_create(request):
     if request.method == 'POST':
-        id = request.POST['id']
-        empresa = Empresas.objects.get(id=id)
-        empresa.shear()
-        return redirect('empresas:empresas')
+        nombre = request.POST['nombre']
+        direccion = request.POST['direccion']
+        telefono = request.POST['telefono']
+        email = request.POST['email']
+        suc_empresas = Suc_Empresa(nombre=nombre, direccion=direccion, telefono=telefono, email=email)
+        suc_empresas.save()
+        return redirect('empresas:suc_empresas')
     else:
-        return render(request, 'empresas/empresas.html')
+        return render(request, 'empresas/suc_empresas.html')
+
+def suc_empresas_list(request):
+    suc_empresas = Suc_Empresa.objects.all()
+    return render(request, 'empresas/suc_empresas.html', {'suc_empresas':suc_empresas})
 
         
+
 
 # Create your views here.
