@@ -23,7 +23,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for producto in productos %}
+                        {% for producto in page_object %}
 
                         <tr>
                             <td scope="row">{{producto.nombre}}</td>
@@ -41,10 +41,34 @@
                     </tbody>
                   
                 </table>
+
+                
+        
+
+<div class="pagination">
+<span class="step-links">
+    {% if page_object.has_previous %}
+        <a href="?page=1">&laquo; first</a>
+        <a href="?page={{ page_object.previous_page_number }}">&lsaquo; previous</a>
+    {% endif %}
+
+    <span class="current-page">
+        Página {{ page_object.number }} de {{ page_object.paginator.num_pages }}.
+    </span>
+
+    {% if page_object.has_next %}
+        <a href="?page={{ page_object.next_page_number }}">next &rsaquo;</a>
+        <a href="?page={{ page_object.paginator.num_pages }}">last &raquo;</a>
+    {% endif %}
+</span>
+</div>
+
+
+
+              </form>
                 
             </div>
           </div>
         </div>
-
 
 {% endblock content %}

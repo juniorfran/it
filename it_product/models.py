@@ -11,7 +11,7 @@ class Productos(models.Model):
     descripcion = models.CharField(max_length=100)
     ubicacion = models.CharField(max_length=50)
     imagen = models.ImageField(upload_to='static/upload')
-    suc_empresa = models.ForeignKey(Suc_Empresa, on_delete=models.CASCADE, default='1')
+    suc_empresa = models.ForeignKey(Suc_Empresa, on_delete=models.CASCADE)
     #sucursal = models.ForeignKey("it_sucursal.Sucursales", on_delete=models.CASCADE)
 
 
