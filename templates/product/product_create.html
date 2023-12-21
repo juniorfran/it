@@ -40,7 +40,7 @@
               <label for="ubicacion" class="col-form-label">Ubicacion:<input type="text" class="form-control" name="ubicacion" id="ubicacion"></label>
               <label for="ciudad">Proveedor:{% csrf_token %}
                 <select class="form-select" name="suc_empresa" id="suc_empresa">
-                  {% for value in dic.suc_empresas %}
+                  {% for value in suc_empresas %}
                       <option value="{{ value.id }}">{{ value.nombre }}</option>
                   {% endfor %}
               </select></label>

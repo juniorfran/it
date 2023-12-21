@@ -124,7 +124,9 @@ def product_create(request):
     """
     Crea un producto
     """
-    # suc_empresas = Productos.objects.all()
+
+    
+    suc_empresas = Productos.objects.all()
 
     datos = Productos.objects.all()
 
@@ -157,9 +159,9 @@ def product_create(request):
         else:
             #diccionario para las instanacias de objetos.
             
-            dic = {
-                'suc_empresas': Suc_Empresa.objects.all()
-            }
+            #dic = {
+            #    'suc_empresas': Suc_Empresa.objects.all()
+            #}
             # paginator = Paginator(Productos.objects.all(), 10)
             # page_number = request.GET.get('page')
             # page_object = paginator.get_page(page_number) 
@@ -173,8 +175,9 @@ def product_create(request):
         paginado = paginator.page(paginator.num_pages)
     # except:
     #     return redirect('product_create')
-        # return render(request, 'product/product_create.html', {'page_object': page_object})
-    return render(request, 'product/product_create.html', {'datos': paginado})
+        # return render(request, 'product/product_create.html', {'page_object': page_object}) 
+
+    return render(request, 'product/product_create.html', {'datos': paginado, 'suc_empresas':suc_empresas})
 
 
 @login_required
